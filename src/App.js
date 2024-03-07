@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import getPlaylist from "./api";
+import usePlaylists from "./hooks/usePlaylists";
+
 
 function App() {
+
+  const {getPlaylistById,playlists,error,loading}=usePlaylists();
+
+  useEffect(()=>{
+    getPlaylistById('PL_XxuZqN0xVDr08QgQHljCecWtA4jBLnS');
+  },[]);
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hellow world</h1>
     </div>
   );
 }
