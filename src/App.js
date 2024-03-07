@@ -10,11 +10,11 @@ function App() {
   useEffect(()=>{
     getPlaylistById('PL_XxuZqN0xVDr08QgQHljCecWtA4jBLnS');
   },[]);
-
+ console.log(playlists);
 
 
   return (
-    <div className="App">
+    <div className="App">0
       <h1>Hellow world</h1>
     </div>
   );
