@@ -29,6 +29,7 @@ const usePlaylists = () => {
         setLoading(true)
         let result;
         try{
+            
             result= await getPlaylist(playlistId);
             setError('');
         }

@@ -4,10 +4,9 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
 import { Button, Container, Stack } from '@mui/material';
 import PlaylistForm from '../playlist-form';
-const Navbar = () => {
+const Navbar = ({getPlaylistById}) => {
 
   const [open, setOpen] = useState(false);
 
@@ -19,10 +18,10 @@ const Navbar = () => {
     setOpen(false);
   };
 
- const getPlaylistId = (playlistId) =>{
-  console.log(playlistId);
- };
-  
+  const getPlaylistId = (playlistId) => {
+   getPlaylistById(playlistId);
+  };
+
 
 
 
@@ -33,7 +32,7 @@ const Navbar = () => {
         <Container maxWidth={'lg'}>
           <Toolbar>
 
-            <Stack sx={{flexGrow:1}}>
+            <Stack sx={{ flexGrow: 1 }}>
               <Typography variant="h4">
                 Clean Youtube
               </Typography>
@@ -44,7 +43,7 @@ const Navbar = () => {
             <Button variant='contained' onClick={handleClickOpen}>
               add playlist
             </Button>
-            <PlaylistForm open={open} handleClose={handleClose} getPlaylistId={getPlaylistId}/>
+            <PlaylistForm open={open} handleClose={handleClose} getPlaylistId={getPlaylistId} />
 
 
           </Toolbar>
