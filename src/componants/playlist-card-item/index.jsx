@@ -4,16 +4,16 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
 
 
 
 
 
-const PlaylistCardItem=({ playlistThumbnail, playlistTitle, channelTitle })=> {
+const PlaylistCardItem = ({ playlistThumbnail, playlistTitle, channelTitle }) => {
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ height:'100%',display:'flex',flexDirection:'column', margin:1}}>
             <CardMedia
                 component="img"
                 image={playlistThumbnail.url}
@@ -21,18 +21,29 @@ const PlaylistCardItem=({ playlistThumbnail, playlistTitle, channelTitle })=> {
             />
             <CardContent>
                 <Typography variant="h6" color="text.primary">
-                    {playlistTitle}
+                    {`${
+                        playlistTitle.length>50
+                        ? playlistTitle.substr(0,50)+ '...'
+                        : playlistTitle
+                    }`}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {channelTitle}
                 </Typography>
             </CardContent>
+            <Box sx={{flexGrow:1}}></Box>
             <CardActions disableSpacing>
                 <Button>
-                 Play
+                    
+                    <Stack direction={'row'} spacing={1} alignItems={'center'}>
+                        <Typography variant='bod2' fontWeight={600}>
+                            Start Tutorial
+                        </Typography>
+                    </Stack>
                 </Button>
             </CardActions>
         </Card>
     );
 }
 export default PlaylistCardItem;
+// BUtton e play icon ni kaj kora baki.

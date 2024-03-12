@@ -1,5 +1,5 @@
 
-import { CssBaseline } from "@mui/material";
+import { Container, CssBaseline, Grid, Stack } from "@mui/material";
 import Navbar from "./componants/navbar";
 import usePlaylists from "./hooks/usePlaylists";
 import PlaylistCardItem from "./componants/playlist-card-item";
@@ -11,21 +11,28 @@ function App() {
  return (
    <>
       <CssBaseline />
-      <div>
+      <Container maxWidth={ "lg"} sx={{marginTop:16}}>
        <Navbar getPlaylistById={getPlaylistById} />
        {playlistArray.length >0 &&(
-        playlistArray.map((item)=><PlaylistCardItem 
+        <Grid container alignItems='stretch' >
+        {playlistArray.map((item)=>(
+          <Grid item xs={12} md={4} lg={4} mb={2}>
+        <PlaylistCardItem 
         
         key={item.id}
         playlistThumbnail={item.playlistThumbnail}
         playlistTitle={item.playlistTitle}
         channelTitle={item.channelTitle}
-        />)
-       )}
-      </div>
+        />
+      </Grid>
+       ))}
+
+       </Grid>
+       )
+       }
+      </Container>
 
    </>
   );
 };
-
 export default App;

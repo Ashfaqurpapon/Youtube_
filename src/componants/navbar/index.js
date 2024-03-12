@@ -29,7 +29,8 @@ const Navbar = ({getPlaylistById}) => {
     <Box sx={{ flexGrow: 1 }}>
 
       <AppBar position='fixed' color="default" sx={{ py: 2 }}>
-        <Container maxWidth={'lg'}>
+        <Container maxWidth={"lg"}>
+
           <Toolbar>
 
             <Stack sx={{ flexGrow: 1 }}>
