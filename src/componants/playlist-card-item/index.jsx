@@ -46,4 +46,4 @@ const PlaylistCardItem = ({ playlistThumbnail, playlistTitle, channelTitle }) =>
     );
 }
 export default PlaylistCardItem;
-// BUtton e play icon ni kaj kora baki.
+// BUtton e play icon ni kaj kora baki.0

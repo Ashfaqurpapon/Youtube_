@@ -1,22 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import getPlaylist from "../api";
+import storage from "../utils/Storage";
+
+const STORAGE_KEY = 'cy_playlist_state';
 
 
+const INIT_STATE = {
+    playlists: {},
+    recentPlaylists: [],
+    favorites: [],
+
+}
 const usePlaylists = () => {
-    const [state, setState] = useState({
-        playlists: {},
-        recentPlaylists: [],
-        favorites: [],
-       
+    const [state, setState] = useState(INIT_STATE);
+
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
 
-    });
+    useEffect(() => {
+        const state = storage.get(STORAGE_KEY);
+        if (state) {
+            setState({ ...state });
+        }
+    }, []);
 
-   const[error,setError]=useState('');
-   const[loading,setLoading]=useState(false);
-
-
-
+    useEffect(() => {
+        if (state !== INIT_STATE) {
+            storage.save(STORAGE_KEY, state);
+        }
+    }, [state]);
 
 
 
@@ -27,27 +40,27 @@ const usePlaylists = () => {
             return;
         }
         setLoading(true)
-        try{
-            
-           const playlist=await getPlaylist(playlistId);
+        try {
+
+            const playlist = await getPlaylist(playlistId);
             setError('');
-            setState((prev) =>({
+            setState((prev) => ({
                 ...prev,
-                playlists:{
+                playlists: {
                     ...prev.playlists,
-                    [playlistId]:playlist,
+                    [playlistId]: playlist,
                 },
             }));
 
         }
-        catch(e){
-           setError(e.response?.data?.error?.message || 'something went wrong',);
-        } finally{
-          
-       setLoading(false);
+        catch (e) {
+            setError(e.response?.data?.error?.message || 'something went wrong',);
+        } finally {
+
+            setLoading(false);
 
         }
-             
+
     };
     const addToFavorites = (playlistId) => {
         setState(prev => ({
@@ -82,7 +95,7 @@ const usePlaylists = () => {
         getPlaylistById,
         addToFavorites,
         addToRecent,
-        
+
 
     };
 
