@@ -1,12 +1,14 @@
 
+import { Link as RouterLink } from 'react-router-dom';
 import { useState } from 'react';
+import Link from '@mui/material/Link';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button, Container, Stack } from '@mui/material';
 import PlaylistForm from '../playlist-form';
-const Navbar = ({getPlaylistById}) => {
+const Navbar = ({ getPlaylistById }) => {
 
   const [open, setOpen] = useState(false);
 
@@ -19,7 +21,7 @@ const Navbar = ({getPlaylistById}) => {
   };
 
   const getPlaylistId = (playlistId) => {
-   getPlaylistById(playlistId);
+    getPlaylistById(playlistId);
   };
 
 
@@ -34,12 +36,19 @@ const Navbar = ({getPlaylistById}) => {
           <Toolbar>
 
             <Stack sx={{ flexGrow: 1 }}>
-              <Typography variant="h4">
-                Clean Youtube
-              </Typography>
-              <Typography variant="body1">
-                by stack learner
-              </Typography>
+              <Link to='/' component={RouterLink}
+                sx={{ textDecoration: 'none', color: 'black' }}>
+                <Typography variant="h4">
+                  Clean Youtube
+                </Typography>
+              </Link>
+              <Link href='https://stacklearner.com'
+              target={'_blank'}
+              sx={{ textDecoration: 'none', color: 'black' }}>
+                <Typography variant="body1">
+                  by stack learner
+                </Typography>
+              </Link>
             </Stack>
             <Button variant='contained' onClick={handleClickOpen}>
               add playlist

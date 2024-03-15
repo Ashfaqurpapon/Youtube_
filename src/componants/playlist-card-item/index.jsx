@@ -5,12 +5,13 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import { Box, Button, Stack } from '@mui/material';
+import { Link } from 'react-router-dom'; 
 
 
 
 
 
-const PlaylistCardItem = ({ playlistThumbnail, playlistTitle, channelTitle }) => {
+const PlaylistCardItem = ({ playlistThumbnail, playlistTitle, channelTitle, playlistId }) => {
 
     return (
         <Card sx={{ height:'100%',display:'flex',flexDirection:'column', margin:1}}>
@@ -33,7 +34,7 @@ const PlaylistCardItem = ({ playlistThumbnail, playlistTitle, channelTitle }) =>
             </CardContent>
             <Box sx={{flexGrow:1}}></Box>
             <CardActions disableSpacing>
-                <Button>
+                <Button to={`/player/${playlistId}`} component={Link}>
                     
                     <Stack direction={'row'} spacing={1} alignItems={'center'}>
                         <Typography variant='bod2' fontWeight={600}>
