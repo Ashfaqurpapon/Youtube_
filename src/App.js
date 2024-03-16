@@ -31,11 +31,16 @@ const HomePage = ({ playlistArray }) => {
 };
 
 const PlayerPage = ({playlists}) => {
+
   const {playlistId}=useParams();
- 
+  const current =playlists[playlistId];
+  console.log('Current Course',current);
+  if(!current) return;
   return (
-    <Container maxWidth={"lg"} sx={{ marginTop: 16 }} ali>
-      <Typography variant="h2" align="center">Clean Youtube Player
+    <Container maxWidth={"lg"} sx={{ marginTop: 16 }} >
+      <Typography variant="h2" align="center">{current.playlistTitle}
+      </Typography>
+      <Typography variant="body2" >{current.playlistDescription}
       </Typography>
     </Container>
   );
@@ -63,7 +68,7 @@ function App() {
           path='/'
           element={<HomePage playlistArray={playlistArray} />}
         />
-        <Route path='/player/:playlistId' element={<PlayerPage />} />
+        <Route path='/player/:playlistId' element={<PlayerPage playlists={playlists}/>} />
         <Route path="*" element={<NotFound />} />
 
       </Routes>
